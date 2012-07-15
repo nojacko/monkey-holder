@@ -5,8 +5,9 @@ MonkeyHolder.com: Instant placeholder images of monkeys, for your design or code
 
 #Install
 * Requires composer.
-* composer install
-* Point document root to public_html
+* composer install.
+* Point document root to public_html.
+* Create public_html/images folder that server can write to.
 * You're done.
 
 #Use
