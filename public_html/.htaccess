@@ -1,0 +1,31 @@
+# Use PHP 5.3 (LIVE ONLY)
+#AddType application/x-httpd-php53 .php
+
+# Deflate text
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/css text/javascript application/x-javascript application/javascript text/x-component text/html text/richtext image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon application/json
+</IfModule>
+
+# Cache images for 7 days
+<filesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+	Header set Cache-Control "max-age=604800, public"
+</filesMatch>
+
+RewriteEngine On
+
+##########
+# Images #
+##########
+RewriteRule ^/?(g)?/?([0-9]+)(x|/)([0-9]+)/([0-9]+)?/?$ /images/$1$2x$4-$5.jpg [NC]
+RewriteRule ^/?(g)?/?([0-9]+)(x|/)([0-9]+)/?$ /images/$1$2x$4.jpg [NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^/?images/(g)?([0-9]+)(x|/)([0-9]+)-([0-9]+)\.jpg$ /image.php?g=$1&x=$2&y=$4&n=$5 [L,NC]
+RewriteRule ^/?images/(g)?([0-9]+)(x|/)([0-9]+)\.jpg$ /image.php?g=$1&x=$2&y=$4 [L,NC]
+
+#########
+# Pages #
+##########
+RewriteRule ^/?(attribution)/?$ /index.php?page=$1 [L,QSA,NC]
+
+ErrorDocument 404 /index.php?page=404
