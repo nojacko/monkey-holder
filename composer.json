@@ -1,11 +1,5 @@
 {
     "require": {
-        "Twuddle/Core": "dev-trunk"
-    }, 
-	"repositories": [
-			{
-					"type": "vcs",
-					"url": "http://twuddle-framework.googlecode.com/svn"
-			}
-	]
+        "Twuddle/Core": "dev-master"
+    }
 }
